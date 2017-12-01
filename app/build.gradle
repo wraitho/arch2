@@ -1,0 +1,52 @@
+apply plugin: 'com.android.application'
+apply plugin: 'kotlin-android'
+apply plugin: 'kotlin-android-extensions'
+
+android {
+    compileSdkVersion sdk.compileVersion
+
+    defaultConfig {
+        applicationId "com.wraitho.arch"
+        minSdkVersion sdk.minVersion
+        targetSdkVersion sdk.targetVersion
+        buildToolsVersion tools.buildToolsVersion
+        versionCode 1
+        versionName "1.0"
+        //testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+
+    sourceSets {
+        main.java.srcDirs += 'src/main/kotlin'
+        test.java.srcDirs += 'src/test/kotlin'
+    }
+}
+
+dependencies {
+    implementation project(path: ':users')
+
+    implementation libs.appCompat
+    implementation libs.constraintLayout
+    implementation libs.kotlin
+    implementation libs.componentsLifeCycle
+    implementation libs.componentsLifeCycleComp
+    implementation libs.componentsLifeCycleJava8
+    implementation libs.componentsViewModel
+
+    annotationProcessor libs.componentsLifeCycleComp
+
+    testImplementation 'junit:junit:4.12'
+    androidTestImplementation 'com.android.support.test:runner:1.0.1'
+    androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.1'
+}

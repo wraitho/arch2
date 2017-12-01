@@ -1,0 +1,57 @@
+apply plugin: 'com.android.library'
+apply plugin: 'kotlin-android'
+apply plugin: 'kotlin-android-extensions'
+apply plugin: 'kotlin-kapt'
+
+android {
+    compileSdkVersion sdk.compileVersion
+
+    defaultConfig {
+        minSdkVersion sdk.minVersion
+        targetSdkVersion sdk.targetVersion
+        buildToolsVersion tools.buildToolsVersion
+    }
+
+    buildTypes {
+        release {
+            consumerProguardFiles 'proguard-rules.pro'
+        }
+    }
+
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+
+    sourceSets {
+        main.java.srcDirs += 'src/main/kotlin'
+        test.java.srcDirs += 'src/test/kotlin'
+    }
+
+}
+
+dependencies {
+    implementation project(path: ':commons')
+    implementation project(path: ':network')
+    implementation project(path: ':styles')
+
+    implementation libs.appCompat
+    implementation libs.anko
+    implementation libs.componentsLifeCycle
+    implementation libs.componentsLifeCycleJava8
+    implementation libs.componentsViewModel
+    implementation libs.constraintLayout
+    implementation libs.dagger
+    implementation libs.design
+    implementation libs.kotlin
+    implementation libs.picasso
+    implementation libs.retrofit
+    implementation libs.recyclerView
+    implementation libs.rxAndroid
+    implementation libs.rxBinding
+    implementation libs.rxKotlin
+    implementation libs.rxJava
+
+    kapt libs.daggerCompiler
+    annotationProcessor libs.componentsLifeCycleComp
+}

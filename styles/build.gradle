@@ -1,0 +1,27 @@
+apply plugin: 'com.android.library'
+
+android {
+    compileSdkVersion sdk.compileVersion
+
+    defaultConfig {
+        minSdkVersion sdk.minVersion
+        targetSdkVersion sdk.targetVersion
+        buildToolsVersion tools.buildToolsVersion
+    }
+
+    buildTypes {
+        release {
+            consumerProguardFiles 'proguard-rules.pro'
+        }
+    }
+
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+
+}
+
+dependencies {
+    implementation libs.design
+}
